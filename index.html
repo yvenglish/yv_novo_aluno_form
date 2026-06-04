@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YV English | Novo Aluno Interessado</title>
+  <meta name="description" content="Formulário inicial para personalizar sua experiência no YV Method." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+
+  <main class="page">
+    <section class="hero-card">
+      <div class="brand-row">
+        <img src="assets/logo-yv-white.png" alt="YV English" class="brand-logo" />
+        <div>
+          <p class="kicker">YV ENGLISH</p>
+          <h1>Formulário de novo aluno</h1>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <p class="micro-label">From understanding to speaking</p>
+        <h2>Antes de começar, quero entender você.</h2>
+        <p>
+          Suas respostas me ajudam a montar uma experiência mais personalizada,
+          alinhada com seus objetivos, sua rotina e o jeito que você aprende melhor.
+        </p>
+      </div>
+    </section>
+
+    <section class="form-card">
+      <div class="section-head">
+        <span class="eyebrow">YV METHOD</span>
+        <h3>Perfil do aluno interessado</h3>
+        <p>Leva poucos minutos. Responda com calma para que eu consiga te orientar melhor.</p>
+      </div>
+
+      <form id="student-form" class="student-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="72db8a30-f66f-438a-a32d-a8a38fde58eb" />
+        <input type="hidden" name="subject" value="Novo formulário YV English" />
+        <input type="hidden" name="from_name" value="Novo Aluno Interessado | YV English" />
+        <input type="checkbox" name="botcheck" class="hidden-botcheck" tabindex="-1" autocomplete="off" />
+
+        <div class="form-block">
+          <h4>1. Informações básicas</h4>
+
+          <div class="grid two">
+            <label class="field">
+              <span>Nome e sobrenome</span>
+              <input type="text" name="nome" required />
+            </label>
+
+            <label class="field">
+              <span>Data de nascimento</span>
+              <input type="date" name="data_de_nascimento" required />
+            </label>
+          </div>
+
+          <div class="grid two">
+            <label class="field">
+              <span>WhatsApp</span>
+              <input type="tel" name="whatsapp" placeholder="(00) 00000-0000" required />
+            </label>
+
+            <label class="field">
+              <span>E-mail</span>
+              <input type="email" name="email" required />
+            </label>
+          </div>
+
+          <div class="grid two">
+            <label class="field">
+              <span>Profissão / área</span>
+              <input type="text" name="profissao_area" />
+            </label>
+
+            <label class="field">
+              <span>Já estudou inglês antes?</span>
+              <select name="ja_estudou_ingles" required>
+                <option value="" disabled selected hidden>Selecione</option>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+                <option value="Um pouco">Um pouco</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Se sim, por quanto tempo e como foi sua experiência?</span>
+            <input type="text" name="experiencia_com_ingles" />
+          </label>
+        </div>
+
+        <div class="form-block">
+          <h4>2. Objetivo</h4>
+
+          <label class="field">
+            <span>Por que você quer aprender inglês?</span>
+            <textarea name="objetivo_principal" rows="4" required></textarea>
+          </label>
+
+          <label class="field">
+            <span>Onde você mais quer usar o inglês?</span>
+            <div class="checks">
+              <label><input type="checkbox" name="uso_ingles[]" value="Trabalho" /> Trabalho</label>
+              <label><input type="checkbox" name="uso_ingles[]" value="Viagens" /> Viagens</label>
+              <label><input type="checkbox" name="uso_ingles[]" value="Estudos" /> Estudos</label>
+              <label><input type="checkbox" name="uso_ingles[]" value="Morando fora" /> Morando fora</label>
+              <label><input type="checkbox" name="uso_ingles[]" value="Conversação" /> Conversação</label>
+              <label><input type="checkbox" name="uso_ingles[]" value="Outro" /> Outro</label>
+            </div>
+          </label>
+
+          <label class="field">
+            <span>Em quanto tempo você gostaria de ver evolução?</span>
+            <input type="text" name="tempo_para_evolucao" placeholder="Ex.: 3 meses, 6 meses, sem pressa..." />
+          </label>
+        </div>
+
+        <div class="form-block">
+          <h4>3. Dificuldades</h4>
+
+          <label class="field">
+            <span>O que mais te trava no inglês hoje?</span>
+            <textarea name="dificuldade_principal" rows="4"></textarea>
+          </label>
+
+          <label class="field">
+            <span>Você sente que:</span>
+            <div class="checks">
+              <label><input type="checkbox" name="sente_que[]" value="Entende, mas não fala" /> entende, mas não fala</label>
+              <label><input type="checkbox" name="sente_que[]" value="Esquece rápido" /> esquece rápido</label>
+              <label><input type="checkbox" name="sente_que[]" value="Não entende quando escuta" /> não entende quando escuta</label>
+              <label><input type="checkbox" name="sente_que[]" value="Tem vergonha de falar" /> tem vergonha de falar</label>
+              <label><input type="checkbox" name="sente_que[]" value="Não sabe por onde começar" /> não sabe por onde começar</label>
+            </div>
+          </label>
+        </div>
+
+        <div class="form-block">
+          <h4>4. Interesses</h4>
+
+          <label class="field">
+            <span>O que você gosta de assistir?</span>
+            <input type="text" name="o_que_gosta_de_assistir" placeholder="séries, filmes, YouTube..." />
+          </label>
+
+          <label class="field">
+            <span>Tem algum universo que você gosta muito?</span>
+            <input type="text" name="universos_de_interesse" placeholder="Harry Potter, futebol, moda, tecnologia..." />
+          </label>
+
+          <div class="grid two">
+            <label class="field">
+              <span>Quais são seus hobbies?</span>
+              <input type="text" name="hobbies" />
+            </label>
+
+            <label class="field">
+              <span>Quem você acompanha?</span>
+              <input type="text" name="quem_acompanha" placeholder="artistas, criadores, jogadores..." />
+            </label>
+          </div>
+        </div>
+
+        <div class="form-block">
+          <h4>5. Rotina e formato</h4>
+
+          <div class="grid two">
+            <label class="field">
+              <span>Quantas vezes por semana você pode estudar?</span>
+              <input type="text" name="frequencia_estudo" />
+            </label>
+
+            <label class="field">
+              <span>Qual melhor período para as aulas?</span>
+              <input type="text" name="melhor_periodo" placeholder="manhã, tarde, noite, horários específicos..." />
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Você prefere aula mais:</span>
+            <div class="checks pill-checks">
+              <label><input type="radio" name="tipo_de_aula" value="Leve" /> leve</label>
+              <label><input type="radio" name="tipo_de_aula" value="Estruturada" /> estruturada</label>
+              <label><input type="radio" name="tipo_de_aula" value="Conversação" /> conversação</label>
+              <label><input type="radio" name="tipo_de_aula" value="Equilibrada" /> equilibrada</label>
+            </div>
+          </label>
+
+          <label class="field">
+            <span>Você aprende melhor:</span>
+            <div class="checks pill-checks">
+              <label><input type="radio" name="aprende_melhor" value="Vendo" /> vendo</label>
+              <label><input type="radio" name="aprende_melhor" value="Ouvindo" /> ouvindo</label>
+              <label><input type="radio" name="aprende_melhor" value="Praticando" /> praticando</label>
+              <label><input type="radio" name="aprende_melhor" value="Explicando" /> explicando</label>
+            </div>
+          </label>
+        </div>
+
+        <div class="form-block highlight-block">
+          <h4>6. Ferramentas e experiência online</h4>
+
+          <div class="tool-note">
+            <p>
+              Na YV English, nossas interações acontecem principalmente pelo
+              <strong>WhatsApp</strong>, <strong>Google Meet</strong> e <strong>YV Hub</strong>.
+            </p>
+          </div>
+
+          <div class="grid two">
+            <label class="field">
+              <span>Você se sente confortável usando o Google Meet?</span>
+              <select name="conforto_google_meet" required>
+                <option value="" disabled selected hidden>Selecione</option>
+                <option>Sim</option>
+                <option>Mais ou menos</option>
+                <option>Não, mas posso aprender</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Você se sente confortável usando páginas de exercícios online?</span>
+              <select name="conforto_paginas_online" required>
+                <option value="" disabled selected hidden>Selecione</option>
+                <option>Sim</option>
+                <option>Mais ou menos</option>
+                <option>Não, mas posso aprender</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Você costuma acessar melhor por:</span>
+            <div class="checks pill-checks">
+              <label><input type="radio" name="dispositivo_principal" value="Celular" /> celular</label>
+              <label><input type="radio" name="dispositivo_principal" value="Computador" /> computador</label>
+              <label><input type="radio" name="dispositivo_principal" value="Tablet" /> tablet</label>
+              <label><input type="radio" name="dispositivo_principal" value="Todos" /> todos</label>
+            </div>
+          </label>
+
+          <label class="field">
+            <span>Tem alguma dificuldade com tecnologia que eu deva saber?</span>
+            <textarea name="dificuldade_tecnologia" rows="3" placeholder="Ex.: internet instável, não sei mexer muito no computador, prefiro celular..."></textarea>
+          </label>
+        </div>
+
+        <div class="form-block">
+          <h4>7. Personalização</h4>
+
+          <label class="field">
+            <span>Se eu pudesse montar aulas totalmente personalizadas para você, o que gostaria de ver nelas?</span>
+            <textarea name="aulas_personalizadas" rows="4"></textarea>
+          </label>
+
+          <label class="field">
+            <span>Tem algum tema que você gostaria muito de aprender em inglês?</span>
+            <textarea name="tema_que_gostaria" rows="3"></textarea>
+          </label>
+        </div>
+
+        <div class="form-block">
+          <h4>8. Comprometimento</h4>
+
+          <label class="field">
+            <span>De 0 a 10, quanto você está disposto(a) a se dedicar ao inglês?</span>
+            <input type="number" min="0" max="10" name="nivel_de_dedicacao" />
+          </label>
+
+          <label class="field">
+            <span>Você prefere:</span>
+            <div class="checks">
+              <label><input type="radio" name="ritmo" value="Evolução mais rápida" /> evolução mais rápida, com mais prática</label>
+              <label><input type="radio" name="ritmo" value="Evolução no seu ritmo" /> evolução no seu ritmo</label>
+            </div>
+          </label>
+        </div>
+
+        <div class="submit-area">
+          <p class="submit-note">Suas respostas serão usadas para montar uma experiência mais estratégica e personalizada.</p>
+          <button type="submit" class="submit-btn">Enviar formulário</button>
+        </div>
+
+        <p id="result" class="result-message"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
