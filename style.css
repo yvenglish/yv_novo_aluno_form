@@ -159,6 +159,7 @@ body {
 }
 
 .brand-row h1 {
+  font-family: "Playfair Display", Georgia, serif;
   margin: 4px 0 0;
   font-size: clamp(1.15rem, 3vw, 1.55rem);
   letter-spacing: -.04em;
@@ -172,6 +173,7 @@ body {
 }
 
 .hero-content h2 {
+  font-family: "Playfair Display", Georgia, serif;
   margin: 10px 0 12px;
   font-size: clamp(2.05rem, 6vw, 4.2rem);
   line-height: .95;
@@ -199,6 +201,7 @@ body {
 }
 
 .section-head h3 {
+  font-family: "Playfair Display", Georgia, serif;
   margin: 9px 0 8px;
   font-size: clamp(1.35rem, 3vw, 1.9rem);
   letter-spacing: -.045em;
@@ -241,6 +244,7 @@ body {
 }
 
 .form-block h4 {
+  font-family: "Playfair Display", Georgia, serif;
   margin: 0 0 18px;
   font-size: 1rem;
   letter-spacing: -.025em;
@@ -485,4 +489,39 @@ select option {
   input,
   select,
   textarea { font-size: 16px; }
+}
+
+
+/* WIZARD & NEW ACTIONS */
+.wizard-progress { margin-bottom: 24px; }
+.progress-info { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+.step-text { font-size: 0.8rem; color: var(--orange-2); font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; }
+.progress-track { height: 6px; background: rgba(255,255,255,0.06); border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; width: 20%; background: linear-gradient(90deg, var(--orange), var(--orange-2)); border-radius: 10px; transition: width 0.4s ease; box-shadow: 0 0 12px rgba(239, 155, 83, 0.4); }
+
+.wizard-steps { position: relative; }
+.step { display: none; animation: fadeIn 0.4s ease forwards; }
+.step.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.wizard-actions { display: flex; gap: 14px; margin-top: 32px; justify-content: flex-end; }
+.btn-next, .btn-prev {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; border: 0; cursor: pointer; border-radius: 18px; padding: 14px 28px;
+  font: inherit; font-weight: 800; transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+}
+.btn-next, .submit-btn {
+  color: #120d20; background: linear-gradient(135deg, #fffaf2, #ef9b53); box-shadow: 0 18px 44px rgba(200, 111, 43, .25);
+  width: auto;
+}
+.btn-next:hover, .submit-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+.btn-prev { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.1); width: auto; }
+.btn-prev:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+@media (max-width: 640px) {
+  .wizard-actions { flex-direction: column-reverse; }
+  .btn-next, .btn-prev, .submit-btn { width: 100%; }
 }

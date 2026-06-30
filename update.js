@@ -1,56 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YV English | Novo Aluno Interessado</title>
-  <meta name="description" content="Formulário inicial para personalizar sua experiência no YV Method." />
+const fs = require('fs');
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="noise"></div>
-  <div class="shape shape-1"></div>
-  <div class="shape shape-2"></div>
-  <div class="shape shape-3"></div>
+let html = fs.readFileSync('index.html', 'utf8');
 
-  <main class="page">
-    <section class="hero-card">
-      <div class="brand-row">
-        <img src="assets/logo-circular.png" alt="YV English" class="brand-logo circular-logo" />
-        <div>
-          <p class="kicker">YV ENGLISH</p>
-          <h1>Formulário de novo aluno</h1>
-        </div>
-      </div>
+html = html.replace(
+    '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />',
+    '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />'
+);
 
-      <div class="hero-content">
-        <p class="micro-label">From understanding to speaking</p>
-        <h2>Antes de começar, quero entender você.</h2>
-        <p>
-          Suas respostas me ajudam a montar uma experiência mais personalizada,
-          alinhada com seus objetivos, sua rotina e o jeito que você aprende melhor.
-        </p>
-      </div>
-    </section>
+html = html.replace(
+    '<img src="assets/logo-yv-white.png" alt="YV English" class="brand-logo" />',
+    '<img src="assets/logo-circular.png" alt="YV English" class="brand-logo circular-logo" />'
+);
 
-    <section class="form-card">
-      <div class="section-head">
-        <span class="eyebrow">YV METHOD</span>
-        <h3>Perfil do aluno interessado</h3>
-        <p>Leva poucos minutos. Responda com calma para que eu consiga te orientar melhor.</p>
-      </div>
-
-      <form id="student-form" class="student-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="72db8a30-f66f-438a-a32d-a8a38fde58eb" />
-        <input type="hidden" name="subject" value="Novo formulário YV English" />
-        <input type="hidden" name="from_name" value="Novo Aluno Interessado | YV English" />
-        <input type="checkbox" name="botcheck" class="hidden-botcheck" tabindex="-1" autocomplete="off" />
-
-        
+const wizardHtml = `
         <div class="wizard-progress">
           <div class="progress-info">
             <span class="step-text">Passo <strong id="current-step-num">1</strong> de <strong>5</strong></span>
@@ -202,10 +164,15 @@
         </div>
 
         <p id="result" class="result-message"></p>
-</form>
-    </section>
-  </main>
+`;
 
-  <script src="script.js"></script>
-</body>
-</html>
+const startIdx = html.indexOf('<div class="form-block">');
+const endIdx = html.indexOf('</form>');
+
+if (startIdx !== -1 && endIdx !== -1) {
+    html = html.substring(0, startIdx) + wizardHtml + html.substring(endIdx);
+    fs.writeFileSync('index.html', html, 'utf8');
+    console.log("Success");
+} else {
+    console.log("Failed to find bounds");
+}
