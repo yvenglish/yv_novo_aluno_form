@@ -3,205 +3,172 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YV English | Novo Aluno Interessado</title>
-  <meta name="description" content="Formulário inicial para personalizar sua experiência no YV Method." />
+  <title>YV English | Agende seu diagnóstico gratuito</title>
+  <meta name="description" content="Agende seu diagnóstico gratuito de inglês ou espanhol com a YV English. Leva menos de 2 minutos." />
+  <meta name="theme-color" content="#140428" />
+  <meta property="og:title" content="Agende seu diagnóstico gratuito | YV English" />
+  <meta property="og:description" content="Um encontro online e sem compromisso para entender seu nível, sua rotina e seu objetivo." />
+  <meta property="og:image" content="https://yvenglish.github.io/yv_novo_aluno_form/assets/logo-circular.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
-  <div class="noise"></div>
-  <div class="shape shape-1"></div>
-  <div class="shape shape-2"></div>
-  <div class="shape shape-3"></div>
+  <header class="topbar">
+    <a href="https://yvenglish.com/" class="brand">
+      <img src="assets/logo-circular.png" alt="YV English" />
+      <span>YV English</span>
+    </a>
+    <div class="lang-switch" role="group" aria-label="Idioma do site">
+      <button type="button" data-site-lang="pt" class="active">PT</button>
+      <button type="button" data-site-lang="es">ES</button>
+    </div>
+  </header>
 
-  <main class="page">
-    <section class="hero-card">
-      <div class="brand-row">
-        <img src="assets/logo-circular.png" alt="YV English" class="brand-logo circular-logo" />
-        <div>
-          <p class="kicker">YV ENGLISH</p>
-          <h1>Formulário de novo aluno</h1>
-        </div>
-      </div>
+  <main class="layout">
+    <!-- Painel lateral: o que é o diagnóstico -->
+    <aside class="side">
+      <span class="label" data-i18n="side.label">Diagnóstico gratuito</span>
+      <h1 data-i18n="side.title">Descubra o caminho mais curto <em>até o seu objetivo.</em></h1>
+      <p class="side-sub" data-i18n="side.sub">Responda 4 perguntas rápidas e eu te chamo no WhatsApp para marcar um encontro online, gratuito e sem compromisso.</p>
 
-      <div class="hero-content">
-        <p class="micro-label">From understanding to speaking</p>
-        <h2>Antes de começar, quero entender você.</h2>
-        <p>
-          Suas respostas me ajudam a montar uma experiência mais personalizada,
-          alinhada com seus objetivos, sua rotina e o jeito que você aprende melhor.
-        </p>
-      </div>
-    </section>
+      <ul class="side-list">
+        <li data-i18n="side.1"><strong>Seu nível real</strong>, sem prova chata.</li>
+        <li data-i18n="side.2"><strong>O que está te travando</strong> e como destravar.</li>
+        <li data-i18n="side.3"><strong>O plano ideal</strong> para sua rotina e seu objetivo.</li>
+      </ul>
 
-    <section class="form-card">
-      <div class="section-head">
-        <span class="eyebrow">YV METHOD</span>
-        <h3>Perfil do aluno interessado</h3>
-        <p>Leva poucos minutos. Responda com calma para que eu consiga te orientar melhor.</p>
-      </div>
+      <figure class="side-quote">
+        <blockquote>“É um dos métodos mais eficientes que já experimentei. Você dá ênfase aos meus pontos fracos, até os que eu mesmo não sabia que tinha.”</blockquote>
+        <figcaption>Junior Silva · <span data-i18n="side.student">aluno</span></figcaption>
+      </figure>
+    </aside>
 
-      <form id="student-form" class="student-form" action="https://api.web3forms.com/submit" method="POST">
+    <!-- Formulário -->
+    <section class="card">
+      <form id="form" novalidate>
         <input type="hidden" name="access_key" value="50a66215-3cb1-4c1f-b3d3-b0ca88b7b072" />
-        <input type="hidden" name="subject" value="Novo formulário YV English" />
-        <input type="hidden" name="from_name" value="Novo Aluno Interessado | YV English" />
-        <input type="checkbox" name="botcheck" class="hidden-botcheck" tabindex="-1" autocomplete="off" />
+        <input type="hidden" name="from_name" value="Diagnóstico | YV English" />
+        <input type="hidden" name="plano_de_interesse" id="plano" />
+        <input type="hidden" name="idioma_do_site" id="idioma_do_site" value="pt" />
+        <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" />
 
-        
-        <div class="wizard-progress">
-          <div class="progress-info">
-            <span class="step-text">Passo <strong id="current-step-num">1</strong> de <strong>5</strong></span>
+        <div class="progress">
+          <div class="progress-top">
+            <span><span data-i18n="progress.step">Passo</span> <strong id="step-num">1</strong> <span data-i18n="progress.of">de</span> 4</span>
+            <span class="progress-time" data-i18n="progress.time">Menos de 2 minutos</span>
           </div>
-          <div class="progress-track">
-            <div class="progress-fill" id="progress-fill"></div>
-          </div>
+          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
         </div>
 
-        <div class="wizard-steps">
-          <!-- STEP 1 -->
-          <div class="step form-block active" data-step="0">
-            <h4>1. Informações básicas</h4>
-
-            <div class="grid two">
-              <label class="field">
-                <span>Nome e sobrenome</span>
-                <input type="text" name="nome" required />
-              </label>
-              <label class="field">
-                <span>Data de nascimento</span>
-                <input type="date" name="data_de_nascimento" required />
-              </label>
-            </div>
-
-            <div class="grid two">
-              <label class="field">
-                <span>WhatsApp</span>
-                <input type="tel" name="whatsapp" placeholder="(00) 00000-0000" required />
-              </label>
-              <label class="field">
-                <span>E-mail</span>
-                <input type="email" name="email" required />
-              </label>
-            </div>
-
-            <div class="grid two">
-              <label class="field">
-                <span>Profissão / área</span>
-                <input type="text" name="profissao_area" />
-              </label>
-              <label class="field">
-                <span>Já estudou inglês antes?</span>
-                <select name="ja_estudou_ingles" required>
-                  <option value="" disabled selected hidden>Selecione</option>
-                  <option value="Sim">Sim</option>
-                  <option value="Não">Não</option>
-                  <option value="Um pouco">Um pouco</option>
-                </select>
-              </label>
-            </div>
-
-            <label class="field">
-              <span>Se sim, por quanto tempo e como foi sua experiência?</span>
-              <input type="text" name="experiencia_com_ingles" />
+        <!-- PASSO 1: idioma -->
+        <fieldset class="step active" data-step="0">
+          <legend data-i18n="s1.title">Qual idioma você quer aprender?</legend>
+          <p class="hint" data-i18n="s1.hint">Toque para escolher.</p>
+          <div class="options big" data-required data-error-key="err.lang">
+            <label class="opt opt-en">
+              <input type="radio" name="idioma" value="Inglês" />
+              <span class="opt-body"><em>English</em><small data-i18n="s1.en">Inglês</small></span>
+            </label>
+            <label class="opt opt-es">
+              <input type="radio" name="idioma" value="Espanhol" />
+              <span class="opt-body"><em>Español</em><small data-i18n="s1.es">Espanhol</small></span>
+            </label>
+            <label class="opt opt-both">
+              <input type="radio" name="idioma" value="Inglês e Espanhol" />
+              <span class="opt-body"><em data-i18n="s1.both">Os dois</em><small>English + Español</small></span>
             </label>
           </div>
+        </fieldset>
 
-          <!-- STEP 2 -->
-          <div class="step form-block" data-step="1">
-            <h4>2. Objetivo</h4>
-
-            <label class="field">
-              <span>Por que você quer aprender inglês?</span>
-              <textarea name="objetivo_principal" rows="4" required></textarea>
-            </label>
-
-            <label class="field">
-              <span>Onde você mais quer usar o inglês?</span>
-              <div class="checks">
-                <label><input type="checkbox" name="uso_ingles[]" value="Trabalho" /> Trabalho</label>
-                <label><input type="checkbox" name="uso_ingles[]" value="Viagens" /> Viagens</label>
-                <label><input type="checkbox" name="uso_ingles[]" value="Estudos" /> Estudos</label>
-                <label><input type="checkbox" name="uso_ingles[]" value="Morando fora" /> Morando fora</label>
-                <label><input type="checkbox" name="uso_ingles[]" value="Conversação" /> Conversação</label>
-                <label><input type="checkbox" name="uso_ingles[]" value="Outro" /> Outro</label>
-              </div>
-            </label>
-
+        <!-- PASSO 2: objetivo e nível -->
+        <fieldset class="step" data-step="1">
+          <legend data-i18n="s2.title">Para que você quer o idioma?</legend>
+          <p class="hint" data-i18n="s2.hint">Pode marcar mais de uma opção.</p>
+          <div class="chips" data-required data-error-key="err.goal">
+            <label class="chip"><input type="checkbox" name="objetivo[]" value="Trabalho e carreira" /><span data-i18n="goal.1">💼 Trabalho e carreira</span></label>
+            <label class="chip"><input type="checkbox" name="objetivo[]" value="Viagens" /><span data-i18n="goal.2">✈️ Viagens</span></label>
+            <label class="chip"><input type="checkbox" name="objetivo[]" value="Estudos ou intercâmbio" /><span data-i18n="goal.3">🎓 Estudos ou intercâmbio</span></label>
+            <label class="chip"><input type="checkbox" name="objetivo[]" value="Morar fora" /><span data-i18n="goal.4">🌎 Morar fora</span></label>
+            <label class="chip"><input type="checkbox" name="objetivo[]" value="Conversar no dia a dia" /><span data-i18n="goal.5">💬 Conversar no dia a dia</span></label>
+            <label class="chip"><input type="checkbox" name="objetivo[]" value="Filmes, séries e cultura" /><span data-i18n="goal.6">🎬 Filmes, séries e cultura</span></label>
           </div>
 
-          <!-- STEP 3 -->
-          <div class="step form-block" data-step="2">
-            <h4>3. Dificuldades</h4>
+          <p class="sub-legend" data-i18n="s2.level">Como você descreveria seu nível hoje?</p>
+          <div class="options levels" data-required data-error-key="err.level">
+            <label class="opt"><input type="radio" name="nivel" value="Nunca estudei" /><span class="opt-body"><strong data-i18n="lvl.1">Nunca estudei</strong><small data-i18n="lvl.1d">Começando do zero</small></span></label>
+            <label class="opt"><input type="radio" name="nivel" value="Básico" /><span class="opt-body"><strong data-i18n="lvl.2">Básico</strong><small data-i18n="lvl.2d">Sei algumas palavras e frases</small></span></label>
+            <label class="opt"><input type="radio" name="nivel" value="Intermediário" /><span class="opt-body"><strong data-i18n="lvl.3">Intermediário</strong><small data-i18n="lvl.3d">Entendo bastante, mas travo pra falar</small></span></label>
+            <label class="opt"><input type="radio" name="nivel" value="Avançado" /><span class="opt-body"><strong data-i18n="lvl.4">Avançado</strong><small data-i18n="lvl.4d">Me viro bem, quero refinar</small></span></label>
+          </div>
+        </fieldset>
 
-            <label class="field">
-              <span>Você sente que:</span>
-              <div class="checks">
-                <label><input type="checkbox" name="sente_que[]" value="Não sabe por onde começar" /> não sabe por onde começar</label>
-                <label><input type="checkbox" name="sente_que[]" value="Entende, mas não fala" /> entende, mas não fala</label>
-                <label><input type="checkbox" name="sente_que[]" value="Esquece rápido" /> esquece rápido</label>
-                <label><input type="checkbox" name="sente_que[]" value="Não entende quando escuta" /> não entende quando escuta</label>
-                <label><input type="checkbox" name="sente_que[]" value="Tem vergonha de falar" /> tem vergonha de falar</label>
-              </div>
-            </label>
+        <!-- PASSO 3: dificuldades e disponibilidade -->
+        <fieldset class="step" data-step="2">
+          <legend data-i18n="s3.title">O que mais te atrapalha hoje?</legend>
+          <p class="hint" data-i18n="s3.hint">Opcional — mas ajuda muito no diagnóstico.</p>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="dificuldades[]" value="Travo na hora de falar" /><span data-i18n="pain.1">Travo na hora de falar</span></label>
+            <label class="chip"><input type="checkbox" name="dificuldades[]" value="Não entendo quando escuto" /><span data-i18n="pain.2">Não entendo quando escuto</span></label>
+            <label class="chip"><input type="checkbox" name="dificuldades[]" value="Esqueço rápido" /><span data-i18n="pain.3">Esqueço rápido</span></label>
+            <label class="chip"><input type="checkbox" name="dificuldades[]" value="Tenho vergonha de falar" /><span data-i18n="pain.4">Tenho vergonha de falar</span></label>
+            <label class="chip"><input type="checkbox" name="dificuldades[]" value="Não sei por onde começar" /><span data-i18n="pain.5">Não sei por onde começar</span></label>
+            <label class="chip"><input type="checkbox" name="dificuldades[]" value="Falta de constância" /><span data-i18n="pain.6">Falta de constância</span></label>
           </div>
 
-          <!-- STEP 4 -->
-          <div class="step form-block" data-step="3">
-            <h4>4. Interesses</h4>
-
-            <label class="field">
-              <span>O que você gosta de assistir?</span>
-              <input type="text" name="o_que_gosta_de_assistir" placeholder="séries, filmes, YouTube..." />
-            </label>
-
-            <label class="field">
-              <span>Tem algum universo que você gosta muito?</span>
-              <input type="text" name="universos_de_interesse" placeholder="Harry Potter, futebol, moda, tecnologia..." />
-            </label>
-
-            <div class="grid two">
-              <label class="field">
-                <span>Quais são seus hobbies?</span>
-                <input type="text" name="hobbies" />
-              </label>
-
-              <label class="field">
-                <span>Quem você acompanha?</span>
-                <input type="text" name="quem_acompanha" placeholder="artistas, criadores, jogadores..." />
-              </label>
-            </div>
+          <p class="sub-legend" data-i18n="s3.when">Qual o melhor período para o diagnóstico?</p>
+          <div class="chips" data-required data-error-key="err.period">
+            <label class="chip"><input type="checkbox" name="periodo[]" value="Manhã" /><span data-i18n="per.1">☀️ Manhã</span></label>
+            <label class="chip"><input type="checkbox" name="periodo[]" value="Tarde" /><span data-i18n="per.2">🌤️ Tarde</span></label>
+            <label class="chip"><input type="checkbox" name="periodo[]" value="Noite" /><span data-i18n="per.3">🌙 Noite</span></label>
           </div>
 
-          <!-- STEP 5 -->
-          <div class="step form-block" data-step="4">
-            <h4>5. Personalização</h4>
-
-            <label class="field">
-              <span>Se eu pudesse montar aulas totalmente personalizadas para você, o que gostaria de ver nelas?</span>
-              <textarea name="aulas_personalizadas" rows="4"></textarea>
-            </label>
-
-            <label class="field">
-              <span>Tem algum tema que você gostaria muito de aprender em inglês?</span>
-              <textarea name="tema_que_gostaria" rows="3"></textarea>
-            </label>
+          <p class="sub-legend" data-i18n="s3.days">E os melhores dias? <small>(opcional)</small></p>
+          <div class="chips days">
+            <label class="chip"><input type="checkbox" name="dias[]" value="Segunda" /><span data-i18n="day.1">Seg</span></label>
+            <label class="chip"><input type="checkbox" name="dias[]" value="Terça" /><span data-i18n="day.2">Ter</span></label>
+            <label class="chip"><input type="checkbox" name="dias[]" value="Quarta" /><span data-i18n="day.3">Qua</span></label>
+            <label class="chip"><input type="checkbox" name="dias[]" value="Quinta" /><span data-i18n="day.4">Qui</span></label>
+            <label class="chip"><input type="checkbox" name="dias[]" value="Sexta" /><span data-i18n="day.5">Sex</span></label>
+            <label class="chip"><input type="checkbox" name="dias[]" value="Sábado" /><span data-i18n="day.6">Sáb</span></label>
           </div>
+        </fieldset>
+
+        <!-- PASSO 4: contato -->
+        <fieldset class="step" data-step="3">
+          <legend data-i18n="s4.title">Pra onde eu te chamo?</legend>
+          <p class="hint" data-i18n="s4.hint">Vou te mandar uma mensagem no WhatsApp para combinar o horário.</p>
+
+          <label class="field">
+            <span data-i18n="f.name">Seu nome</span>
+            <input type="text" name="nome" id="nome" autocomplete="name" required />
+          </label>
+          <label class="field">
+            <span data-i18n="f.wa">WhatsApp com DDD</span>
+            <input type="tel" name="whatsapp" id="whatsapp" autocomplete="tel" inputmode="tel" placeholder="(21) 99999-9999" required />
+          </label>
+          <label class="field">
+            <span><span data-i18n="f.email">E-mail</span> <small class="optional" data-i18n="f.optional">(opcional)</small></span>
+            <input type="email" name="email" id="email" autocomplete="email" />
+          </label>
+
+          <p class="privacy" data-i18n="s4.privacy">🔒 Seus dados são usados só para o contato do diagnóstico. Nada de spam.</p>
+        </fieldset>
+
+        <p class="error" id="error" role="alert"></p>
+
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" id="btn-prev" hidden data-i18n="btn.prev">Voltar</button>
+          <button type="button" class="btn btn-primary" id="btn-next" data-i18n="btn.next">Continuar</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit" hidden data-i18n="btn.submit">Quero meu diagnóstico gratuito</button>
         </div>
-
-        <div class="wizard-actions">
-          <button type="button" class="btn-prev ghost" id="btn-prev" style="display: none;">Voltar</button>
-          <button type="button" class="btn-next primary" id="btn-next">Avançar</button>
-          <button type="submit" class="submit-btn primary" id="btn-submit" style="display: none;">Finalizar e Enviar</button>
-        </div>
-
-        <p id="result" class="result-message"></p>
-</form>
+      </form>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script src="i18n.js?v=2"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
