@@ -10,7 +10,43 @@ const errorEl = document.getElementById('error');
 const stepNum = document.getElementById('step-num');
 const fill = document.getElementById('progress-fill');
 const waInput = document.getElementById('whatsapp');
-const HUB_LEAD_URL = 'https://yv-english-hub.vercel.app/api/lead';
+
+// Pedidos também vão para a coleção "leads" do Firebase do Hub (aba Diagnósticos do admin).
+// A chave abaixo é a chave pública do app web do Hub (a mesma que está no código do Hub);
+// quem decide o que pode ser gravado são as regras do Firestore.
+const FIRESTORE_LEADS_URL = 'https://firestore.googleapis.com/v1/projects/yv-hub-2253d/databases/(default)/documents/leads?key=AIzaSyDcwGG7pZu_coWB2G_vtI99LurRCZijFVw';
+
+const toFirestore = (obj) => ({
+  fields: Object.fromEntries(Object.entries(obj).map(([k, v]) => [
+    k,
+    Array.isArray(v) ? { arrayValue: v.length ? { values: v.map((s) => ({ stringValue: s })) } : {} } : { stringValue: v },
+  ])),
+});
+
+function buildLead(fd) {
+  const s = (v, max) => String(v || '').trim().slice(0, max);
+  const list = (name) => fd.getAll(name).map((v) => s(v, 60)).slice(0, 10);
+  const whatsapp = s(fd.get('whatsapp'), 30);
+  const now = new Date().toISOString();
+  return {
+    nome: s(fd.get('nome'), 80),
+    whatsapp,
+    whatsappDigits: whatsapp.replace(/\D/g, '').slice(0, 16),
+    email: s(fd.get('email'), 120),
+    idioma: s(fd.get('idioma'), 40),
+    nivel: s(fd.get('nivel'), 40),
+    objetivo: list('objetivo[]'),
+    dificuldades: list('dificuldades[]'),
+    periodo: list('periodo[]'),
+    dias: list('dias[]'),
+    plano: s(fd.get('plano_de_interesse'), 40),
+    idiomaDoSite: YV.lang === 'es' ? 'es' : 'pt',
+    status: 'novo',
+    notes: '',
+    createdAt: now,
+    updatedAt: now,
+  };
+}
 
 const PT_ERRORS = {
   'err.lang': 'Escolha um idioma para continuar.',
@@ -144,7 +180,7 @@ form.addEventListener('submit', async (e) => {
   try {
     // Envia ao mesmo tempo para o e-mail (Web3Forms) e para a aba Diagnósticos do Hub.
     // Basta um dos dois dar certo para o pedido não se perder.
-    const { access_key, ...hubData } = data; // eslint-disable-line no-unused-vars
+    const lead = buildLead(fd);
     const post = async (url, body, ok) => {
       const res = await fetch(url, {
         method: 'POST',
@@ -156,7 +192,7 @@ form.addEventListener('submit', async (e) => {
     };
     const results = await Promise.allSettled([
       post('https://api.web3forms.com/submit', data, (j) => j.success),
-      post(HUB_LEAD_URL, hubData, (j) => j.ok),
+      post(FIRESTORE_LEADS_URL, toFirestore(lead), (j) => !!j.name),
     ]);
     results.forEach((r, i) => { if (r.status === 'rejected') console.warn(i ? 'Hub:' : 'Web3Forms:', r.reason); });
     if (results.every((r) => r.status === 'rejected')) throw new Error('envio falhou');
