@@ -92,9 +92,10 @@ btnPrev.addEventListener('click', () => go(current - 1));
 
 // Escolher o idioma já avança e ajusta as cores
 form.querySelectorAll('input[name="idioma"]').forEach((r) => {
-  r.addEventListener('change', () => {
+  // "click" (e não "change") para avançar mesmo se o idioma já veio marcado pelo link
+  r.addEventListener('click', () => {
     setTheme(r.value);
-    if (current === 0) setTimeout(() => go(1), 260);
+    if (current === 0) setTimeout(() => { if (current === 0) go(1); }, 260);
   });
 });
 
