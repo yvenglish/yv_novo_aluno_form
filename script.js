@@ -10,6 +10,7 @@ const errorEl = document.getElementById('error');
 const stepNum = document.getElementById('step-num');
 const fill = document.getElementById('progress-fill');
 const waInput = document.getElementById('whatsapp');
+const HUB_LEAD_URL = 'https://yv-english-hub.vercel.app/api/lead';
 
 const PT_ERRORS = {
   'err.lang': 'Escolha um idioma para continuar.',
@@ -141,13 +142,24 @@ form.addEventListener('submit', async (e) => {
   btnSubmit.textContent = YV.t('btn.sending', 'Enviando…');
 
   try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const json = await res.json();
-    if (!res.ok || !json.success) throw new Error(json.message || 'erro');
+    // Envia ao mesmo tempo para o e-mail (Web3Forms) e para a aba Diagnósticos do Hub.
+    // Basta um dos dois dar certo para o pedido não se perder.
+    const { access_key, ...hubData } = data; // eslint-disable-line no-unused-vars
+    const post = async (url, body, ok) => {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !ok(json)) throw new Error(json.message || json.error || `erro ${res.status}`);
+    };
+    const results = await Promise.allSettled([
+      post('https://api.web3forms.com/submit', data, (j) => j.success),
+      post(HUB_LEAD_URL, hubData, (j) => j.ok),
+    ]);
+    results.forEach((r, i) => { if (r.status === 'rejected') console.warn(i ? 'Hub:' : 'Web3Forms:', r.reason); });
+    if (results.every((r) => r.status === 'rejected')) throw new Error('envio falhou');
 
     try {
       sessionStorage.setItem('yv-lead', JSON.stringify({
